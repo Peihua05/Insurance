@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -7,7 +8,8 @@ from sklearn.model_selection import train_test_split
 
 
 #Load and prepare the data
-df = pd.read_csv('data/insurance.csv')
+csv_path = os.path.join(os.path.dirname(__file__), 'data', 'insurance.csv')
+df = pd.read_csv(csv_path)
 df_encoded = pd.get_dummies(df, drop_first=True)
 X = df_encoded.drop('charges', axis=1)
 y = df_encoded['charges']
